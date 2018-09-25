@@ -1,0 +1,6 @@
+.DS_Store
+assets
+virtualenv
+start.sh
+haro.sqlite
+haro.zip
