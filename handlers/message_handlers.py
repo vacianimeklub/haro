@@ -2,11 +2,13 @@
 
 import sqlite3
 
+from settings import SQLITE_PATH
+
 def echo(bot, update):
     if "Haro" in update.message.text and "?" in update.message.text:
         update.message.reply_text('Haro figyel! Haro figyel!')
 
-    db_conn = sqlite3.connect('haro.sqlite')
+    db_conn = sqlite3.connect(SQLITE_PATH)
     c = db_conn.cursor()
     c.execute('''
             INSERT INTO user_activity (id, username, chat_id, chat_title, datetime) VALUES (?, ?, ?, ?, ?)
