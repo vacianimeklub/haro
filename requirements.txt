@@ -1,3 +1,5 @@
 python-telegram-bot==11.1.0
+sqlalchemy==1.2.12
+
 ipython[all]
 ipdb

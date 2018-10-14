@@ -6,3 +6,4 @@ ADMIN_USER_ID = int(os.getenv('ADMIN_USER_ID'))
 LIST_OF_ADMINS = [ADMIN_USER_ID]
 
 SQLITE_PATH = 'haro.sqlite'
+SQLALCHEMY_SQLITE_PATH = 'sqlite:///' + SQLITE_PATH
