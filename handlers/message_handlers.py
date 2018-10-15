@@ -9,7 +9,6 @@ def echo(bot, update):
 
     user_activity = UserActivity(
         update.message.from_user.id,
-        update.message.from_user.username,
         update.message.chat_id,
         update.message.chat.title if update.message.chat.title else update.message.chat.type,
         update.message.date

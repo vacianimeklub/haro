@@ -18,6 +18,7 @@ fileConfig(config.config_file_name)
 import os, sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__ + '/../')))
 from models import Base
+from models import *
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
