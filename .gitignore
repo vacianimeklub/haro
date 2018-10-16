@@ -3,5 +3,5 @@
 assets
 virtualenv
 *.sh
-haro.sqlite
-haro.zip
+*.sqlite
+*.zip
