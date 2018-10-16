@@ -1,7 +1,7 @@
 from sqlalchemy import Column, DateTime, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from models import engine, Base, users, chat
+from models import engine, Base, user, chat
 
 
 class UserActivity(Base):

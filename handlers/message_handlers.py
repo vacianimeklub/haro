@@ -2,7 +2,7 @@
 
 from models import session
 from models.user_activity import UserActivity
-from models.users import User
+from models.user import User
 from models.chat import Chat
 
 def echo(bot, update):
