@@ -3,6 +3,7 @@
 from models import session
 from models.user_activity import UserActivity
 from models.users import User
+from models.chat import Chat
 
 def echo(bot, update):
     if "Haro" in update.message.text and "?" in update.message.text:
@@ -17,10 +18,16 @@ def echo(bot, update):
     user = session.merge(user)
     session.add(user)
 
-    user_activity = UserActivity(
-        user,
+    chat = Chat(
         update.message.chat_id,
         update.message.chat.title if update.message.chat.title else update.message.chat.type,
+    )
+    chat = session.merge(chat)
+    session.add(chat)
+
+    user_activity = UserActivity(
+        user,
+        chat,
         update.message.date
     )
     session.add(user_activity)

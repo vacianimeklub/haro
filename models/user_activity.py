@@ -1,7 +1,7 @@
 from sqlalchemy import Column, DateTime, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from models import engine, Base, users
+from models import engine, Base, users, chat
 
 
 class UserActivity(Base):
@@ -9,16 +9,15 @@ class UserActivity(Base):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    chat_id = Column(Integer)
-    chat_title = Column(String)
+    chat_id = Column(Integer, ForeignKey('chats.id'))
     datetime = Column(DateTime)
 
     user = relationship("User", back_populates="activity")
+    chat = relationship("Chat", back_populates="activity")
 
-    def __init__(self, user, chat_id, chat_title, datetime):
+    def __init__(self, user, chat, datetime):
         self.user = user
-        self.chat_id = chat_id
-        self.chat_title = chat_title
+        self.chat = chat
         self.datetime = datetime
 
 Base.metadata.create_all(engine)
