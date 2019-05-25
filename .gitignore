@@ -6,3 +6,4 @@ virtualenv
 *.sqlite
 *.zip
 *.log
+.vscode
