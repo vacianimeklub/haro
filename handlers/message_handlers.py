@@ -5,7 +5,7 @@ from models.user_activity import UserActivity
 from models.user import User
 from models.chat import Chat
 
-def echo(bot, update):
+def stats(bot, update):
     if "Haro" in update.message.text and "?" in update.message.text:
         update.message.reply_text('Haro figyel! Haro figyel!')
 
