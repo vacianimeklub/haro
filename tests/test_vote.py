@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from mock import Mock, patch
+from mock import patch
 
 from handlers.command_handlers import get_vote_entries, toggle_vote_entry_text
 from handlers.const import ACTIVE_ENTRY_TEXT_SUFFIX

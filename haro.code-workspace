@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "virtualenv/bin/python"
+		"python.pythonPath": "virtualenv3/bin/python3"
 	}
 }

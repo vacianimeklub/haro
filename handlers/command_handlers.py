@@ -1,16 +1,12 @@
 # coding: utf-8
 
-from sqlalchemy.sql import func
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 from .const import ACTIVE_ENTRY_TEXT_SUFFIX, DUMMY_VOTE_ENTRIES
 from .helpers import admin_only, build_menu
 
-from models import session
-from models.user_activity import UserActivity
-from models.user import User
-from models.chat import Chat
 from settings import SQLITE_PATH
+
 
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Haro elindult! Haro elindult!")
@@ -58,7 +54,3 @@ def vote_callback(bot, update):
         message_id=origin_message_from_bot.message_id,
         reply_markup=reply_markup
     )
-
-
-def last_message(bot, update):
-    q = session.query(UserActivity).join("user").join("chat").group_by(User.id)

@@ -1,6 +1,6 @@
 from flask import Flask
 from gevent.pywsgi import WSGIServer
-from healthcheck import HealthCheck, EnvironmentDump
+from healthcheck import HealthCheck
 
 app = Flask(__name__)
 
