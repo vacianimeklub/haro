@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 . set_environment.sh
 . virtualenv3/bin/activate
 

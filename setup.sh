@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 virtualenv virtualenv -p python2
 . virtualenv/bin/activate
 pip install -r requirements.txt
