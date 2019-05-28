@@ -22,4 +22,3 @@ def dump(bot, update):
 
 def last_message(bot, update):
     q = session.query(UserActivity).join("user").join("chat").group_by(User.id)
-

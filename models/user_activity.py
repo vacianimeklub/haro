@@ -20,4 +20,5 @@ class UserActivity(Base):
         self.chat = chat
         self.datetime = datetime
 
+
 Base.metadata.create_all(engine)

@@ -5,14 +5,15 @@ from models.user_activity import UserActivity
 from models.user import User
 from models.chat import Chat
 
+
 def stats(bot, update):
     if "Haro" in update.message.text and "?" in update.message.text:
         update.message.reply_text('Haro figyel! Haro figyel!')
 
     user = User(
-        update.message.from_user.id, 
-        update.message.from_user.first_name, 
-        update.message.from_user.last_name, 
+        update.message.from_user.id,
+        update.message.from_user.first_name,
+        update.message.from_user.last_name,
         update.message.from_user.username
     )
     user = session.merge(user)
