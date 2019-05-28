@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 . set_environment.sh
-. virtualenv3/bin/activate
+. .tox/py37/bin/activate
 
 python haro.py

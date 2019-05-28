@@ -3,8 +3,7 @@
 assets
 __pycache__
 .pytest_cache
-virtualenv/
-virtualenv3/
+.tox/
 set_environment.sh
 *.sqlite
 *.zip
