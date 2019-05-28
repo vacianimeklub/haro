@@ -3,10 +3,10 @@
 import logging
 
 from telegram.ext import (
-    CallbackQueryHandler, 
-    CommandHandler, 
-    Filters, 
-    MessageHandler, 
+    CallbackQueryHandler,
+    CommandHandler,
+    Filters,
+    MessageHandler,
     Updater,
 )
 
@@ -16,8 +16,10 @@ from settings import BOT_TOKEN
 
 
 def setup_logging():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                     level=logging.INFO)
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO
+    )
 
 
 def setup_handlers(dispatcher):

@@ -11,9 +11,10 @@ class Chat(Base):
     chat_title = Column(String)
 
     activity = relationship("UserActivity", back_populates="chat")
-    
+
     def __init__(self, id, chat_title):
         self.id = id
         self.chat_title = chat_title
+
 
 Base.metadata.create_all(engine)

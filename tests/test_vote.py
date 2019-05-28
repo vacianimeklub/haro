@@ -5,6 +5,7 @@ from mock import patch
 from handlers.command_handlers import get_vote_entries, toggle_vote_entry_text
 from handlers.const import ACTIVE_ENTRY_TEXT_SUFFIX
 
+
 class TestGetVoteEntries(object):
     def test_not_active(self):
         entries = {'a': 'one', 'b': 'two'}
@@ -22,7 +23,7 @@ class TestGetVoteEntries(object):
             result_entries = get_vote_entries(['a'])
 
         assert expected_entries == result_entries
-    
+
     def test_multiple_active(self):
         entries = {'a': 'one', 'b': 'two'}
         expected_entries = {'a': 'one ✅', 'b': 'two ✅'}

@@ -17,6 +17,7 @@ def dump(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Adatok küldése, adatok küldése!")
     bot.send_document(chat_id=update.message.chat_id, document=open(SQLITE_PATH, 'rb'))
 
+
 def get_vote_entries(active_keys=[]):
     entries = DUMMY_VOTE_ENTRIES.copy()
     for key in active_keys:
@@ -24,28 +25,38 @@ def get_vote_entries(active_keys=[]):
             entries[key] = toggle_vote_entry_text(entries[key])
     return entries
 
+
 def get_voting_reply_markup(vote_entries):
     if not vote_entries:
         return None
 
-    button_list = [InlineKeyboardButton(entry, callback_data=id) for id, entry in vote_entries.items()]
+    button_list = [
+        InlineKeyboardButton(entry, callback_data=id) for id, entry in vote_entries.items()
+    ]
     return InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
+
 
 def toggle_vote_entry_text(entry_text):
     if entry_text.endswith(ACTIVE_ENTRY_TEXT_SUFFIX):
         return entry_text.replace(ACTIVE_ENTRY_TEXT_SUFFIX, '')
     return "{text}{suffix}".format(text=entry_text, suffix=ACTIVE_ENTRY_TEXT_SUFFIX)
 
+
 @admin_only
 def vote(bot, update):
     reply_markup = get_voting_reply_markup(get_vote_entries())
-    bot.send_message(chat_id=update.message.chat_id, text="Szavazzunk! Szavazzunk!", reply_markup=reply_markup)
+    bot.send_message(
+        chat_id=update.message.chat_id,
+        text="Szavazzunk! Szavazzunk!",
+        reply_markup=reply_markup
+    )
     # switch_inline_query is going to be necessary for the last message which will publish the vote
+
 
 def vote_callback(bot, update):
     bot.answer_callback_query(update.callback_query.id, text='Vettem! Vettem!')
-    # below, we will need to merge the state with the earlier one if we want to keep earlier responses, or 
-    # ignore the earlier state (as we do now):
+    # below, we will need to merge the state with the earlier one if we want to keep earlier
+    # responses, or ignore the earlier state (as we do now):
     reply_markup = get_voting_reply_markup(get_vote_entries([update.callback_query.data]))
     origin_message_from_bot = update.callback_query.message
     bot.edit_message_text(
