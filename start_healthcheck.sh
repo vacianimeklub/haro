@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-. virtualenv/bin/activate
+. .tox/py37/bin/activate
 
 python provide_healthcheck.py

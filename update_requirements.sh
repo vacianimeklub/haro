@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-tox
+tox -r --notest
