@@ -1,7 +1,10 @@
 .DS_Store
 *.pyc
 assets
-virtualenv
+__pycache__
+.pytest_cache
+virtualenv/
+virtualenv3/
 *.sh
 *.sqlite
 *.zip
