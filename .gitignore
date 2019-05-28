@@ -5,7 +5,7 @@ __pycache__
 .pytest_cache
 virtualenv/
 virtualenv3/
-*.sh
+set_environment.sh
 *.sqlite
 *.zip
 *.log
