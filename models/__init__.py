@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from settings import SQLITE_PATH, SQLALCHEMY_SQLITE_PATH
+from settings import SQLALCHEMY_SQLITE_PATH
 
 
 engine = create_engine(SQLALCHEMY_SQLITE_PATH, echo=True)

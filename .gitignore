@@ -1,8 +1,10 @@
 .DS_Store
 *.pyc
 assets
-virtualenv
-*.sh
+__pycache__
+.pytest_cache
+.tox/
+set_environment.sh
 *.sqlite
 *.zip
 *.log

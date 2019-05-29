@@ -1,14 +1,12 @@
 # coding: utf-8
 
-from sqlalchemy.sql import func
-
 from .helpers import admin_only
 
 from models import session
 from models.user_activity import UserActivity
 from models.user import User
-from models.chat import Chat
 from settings import SQLITE_PATH
+
 
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Haro elindult! Haro elindult!")
@@ -21,5 +19,4 @@ def dump(bot, update):
 
 
 def last_message(bot, update):
-    q = session.query(UserActivity).join("user").join("chat").group_by(User.id)
-
+    session.query(UserActivity).join("user").join("chat").group_by(User.id)

@@ -1,0 +1,68 @@
+version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-3.7
+      - test-2.7
+jobs:
+  test-3.7:
+    docker:
+      - image: circleci/python:3.7.3
+    environment:
+      PYTHON_VERSION: "py37" 
+    working_directory: ~/haro
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Install tox
+          command: sudo pip install tox 
+      - run:
+          name: Install dependencies
+          command: tox --notest -e ${PYTHON_VERSION}
+      - save_cache:
+          paths:
+            - .tox/py37
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: Run tests
+          command: tox -e ${PYTHON_VERSION}
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+  
+  test-2.7:
+    test-3.7: &test-template
+    docker:
+      - image: circleci/python:2.7
+    environment:
+      PYTHON_VERSION: "py27" 
+    working_directory: ~/haro
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Install tox
+          command: sudo pip install tox 
+      - run:
+          name: Install dependencies
+          command: tox --notest -e ${PYTHON_VERSION}
+      - save_cache:
+          paths:
+            - .tox/py27
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: Run tests
+          command: tox -e ${PYTHON_VERSION}
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
