@@ -20,8 +20,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
+          name: install tox
+          command: sudo pip install tox 
+      - run:
           name: install dependencies
-          command: pip install --user tox && tox --notest -e ${PYTHON_VERSION}
+          command: tox --notest -e ${PYTHON_VERSION}
       - save_cache:
           paths:
             - .tox/${PYTHON_VERSION}
