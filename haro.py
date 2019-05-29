@@ -11,6 +11,7 @@ from telegram.ext import (
 
 from handlers.command_handlers import start, dump
 from handlers.message_handlers import stats
+from handlers.voting import get_setup_voting_conversation_handler
 from settings import BOT_TOKEN
 
 
@@ -25,9 +26,11 @@ def setup_handlers(dispatcher):
     start_handler = CommandHandler('start', start)
     dump_handler = CommandHandler('dump', dump)
     stats_handler = MessageHandler(Filters.text, stats)
+    voting_handler = get_setup_voting_conversation_handler()
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(dump_handler)
+    dispatcher.add_handler(voting_handler)
     dispatcher.add_handler(stats_handler)
 
 
