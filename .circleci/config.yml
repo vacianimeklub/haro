@@ -21,7 +21,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: install dependencies
-          command: tox --notest -e ${PYTHON_VERSION}
+          command: pip install tox && tox --notest -e ${PYTHON_VERSION}
       - save_cache:
           paths:
             - .tox/${PYTHON_VERSION}
