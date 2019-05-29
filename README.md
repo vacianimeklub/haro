@@ -14,7 +14,7 @@ few functionalities that our community likes to use:
 
 - Tested via tox + pytest for Python 2.7, 3.7
 - Uses sqlalchemy and an SQLite database (for now)
-- Healthcheck is done via the Healthcheck library running on a lightweight server on port 500, built on Flask and gevent.pywsgi
+- Healthcheck is done via the Healthcheck library running on a lightweight server on port 5000, built on Flask and gevent.pywsgi
 
 ### Development setup
 
