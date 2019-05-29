@@ -11,7 +11,7 @@ jobs:
       - image: circleci/python:3.7.3
     environment:
       PYTHON_VERSION: "py37" 
-    working_directory: ~/repo
+    working_directory: ~/haro
     steps:
       - checkout
       - restore_cache:
@@ -20,17 +20,17 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: install tox
+          name: Install tox
           command: sudo pip install tox 
       - run:
-          name: install dependencies
+          name: Install dependencies
           command: tox --notest -e ${PYTHON_VERSION}
       - save_cache:
           paths:
             - .tox/${PYTHON_VERSION}
           key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
-          name: run tests
+          name: Run tests
           command: tox -e ${PYTHON_VERSION}
       - store_artifacts:
           path: test-reports
