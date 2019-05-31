@@ -8,4 +8,3 @@ set_environment.sh
 *.sqlite
 *.zip
 *.log
-.vscode

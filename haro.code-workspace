@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "virtualenv/bin/python"
+		"python.pythonPath": ".tox/py37/bin/python"
 	}
 }
