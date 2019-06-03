@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from models import engine, Base
+from models import Base
 
 
 class User(Base):
@@ -19,6 +19,3 @@ class User(Base):
         self.first_name = first_name
         self.last_name = last_name
         self.username = username
-
-
-Base.metadata.create_all(engine)

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from models import engine, Base
+from models import Base
 
 
 class Chat(Base):
@@ -15,6 +15,3 @@ class Chat(Base):
     def __init__(self, id, chat_title):
         self.id = id
         self.chat_title = chat_title
-
-
-Base.metadata.create_all(engine)

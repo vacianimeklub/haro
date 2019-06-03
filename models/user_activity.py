@@ -1,7 +1,7 @@
 from sqlalchemy import Column, DateTime, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from models import engine, Base
+from models import Base
 
 
 class UserActivity(Base):
@@ -19,6 +19,3 @@ class UserActivity(Base):
         self.user = user
         self.chat = chat
         self.datetime = datetime
-
-
-Base.metadata.create_all(engine)
