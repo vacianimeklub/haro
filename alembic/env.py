@@ -1,5 +1,3 @@
-from os.path import abspath, dirname
-
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -7,15 +5,11 @@ from sqlalchemy import pool
 
 from alembic import context
 
-import sys
-
-# Add the root of the project to the Python path so base import can resolve
-sys.path.insert(0, dirname(dirname(abspath(__file__))))
-
 from models import Base
-from models.chat import Chat
-from models.user import User
-from models.user_activity import UserActivity
+# Don't understand why this is necessary, but Alembic can't find the models without it:
+from models.chat import Chat # noqa
+from models.user import User # noqa
+from models.user_activity import UserActivity # noqa
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

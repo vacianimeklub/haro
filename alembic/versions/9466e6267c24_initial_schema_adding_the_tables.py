@@ -1,7 +1,7 @@
 """Initial schema - adding the tables
 
 Revision ID: 9466e6267c24
-Revises: 
+Revises:
 Create Date: 2019-06-03 09:27:12.330842
 
 """
@@ -17,19 +17,22 @@ depends_on = None
 
 
 def upgrade():
-    op.create_table('users',
+    op.create_table(
+        'users',
         sa.Column('id', sa.INTEGER(), nullable=False),
         sa.Column('first_name', sa.VARCHAR(), nullable=True),
         sa.Column('last_name', sa.VARCHAR(), nullable=True),
         sa.Column('username', sa.VARCHAR(), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('chats',
+    op.create_table(
+        'chats',
         sa.Column('id', sa.INTEGER(), nullable=False),
         sa.Column('chat_title', sa.VARCHAR(), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('user_activity',
+    op.create_table(
+        'user_activity',
         sa.Column('id', sa.INTEGER(), nullable=False),
         sa.Column('user_id', sa.INTEGER(), nullable=True),
         sa.Column('chat_id', sa.INTEGER(), nullable=True),
