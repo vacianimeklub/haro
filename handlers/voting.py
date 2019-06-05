@@ -14,6 +14,13 @@ from telegram.ext import (
 
 import logging
 
+from models import session
+from models.user import User
+from models.voting import (
+    Voting,
+    VotingOptions,
+)
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -129,6 +136,8 @@ def vote_setup_process_mode_selection(bot, update, chat_data):
 
     update.message.reply_text(u'Készen is vagyunk, köszi!', reply_markup=ReplyKeyboardRemove())
 
+    save_voting(update.message.from_user, chat_data['voting'])
+
     return ConversationHandler.END
 
 
@@ -137,3 +146,32 @@ def cancel_setup_voting(bot, update, chat_data):
     update.message.reply_text(u'Akkor semmi :)')
 
     return ConversationHandler.END
+
+
+def save_voting(from_user, voting_data):
+    creator_user = User(
+        from_user.id,
+        from_user.first_name,
+        from_user.last_name,
+        from_user.username
+    )
+    creator_user = session.merge(creator_user)
+    session.add(creator_user)
+
+    options = []
+    for voting_option in voting_data['answers']:
+        option = VotingOptions(voting_option)
+        option = session.merge(option)
+        session.add(option)
+        options.append(option)
+
+    voting = Voting(
+        creator=creator_user,
+        title=voting_data['title'],
+        description=voting_data['description'],
+        is_multi_choice=voting_data['multi'],
+        options=options,
+    )
+    voting = session.merge(voting)
+    session.add(voting)
+    session.commit()
