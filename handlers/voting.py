@@ -14,12 +14,7 @@ from telegram.ext import (
 
 import logging
 
-from models import session
-from models.user import User
-from models.voting import (
-    Voting,
-    VotingOption,
-)
+from models import session, User, Voting, VotingOption
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)

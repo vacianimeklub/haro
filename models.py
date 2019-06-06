@@ -1,5 +1,6 @@
 from datetime import datetime
 from sqlalchemy import (
+    create_engine,
     Boolean,
     Column,
     DateTime,
@@ -7,9 +8,66 @@ from sqlalchemy import (
     Integer,
     String,
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
 
-from models import Base
+from settings import SQLALCHEMY_SQLITE_PATH
+
+
+engine = create_engine(SQLALCHEMY_SQLITE_PATH, echo=True)
+Base = declarative_base()
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    username = Column(String)
+
+    activity = relationship("UserActivity", back_populates="user")
+    created_votings = relationship('Voting', back_populates='creator')
+    votes = relationship('Vote', back_populates='voter')
+
+    def __init__(self, id, first_name, last_name, username):
+        self.id = id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.username = username
+
+
+class Chat(Base):
+    __tablename__ = "chats"
+
+    id = Column(Integer, primary_key=True)
+    chat_title = Column(String)
+
+    activity = relationship("UserActivity", back_populates="chat")
+
+    def __init__(self, id, chat_title):
+        self.id = id
+        self.chat_title = chat_title
+
+
+class UserActivity(Base):
+    __tablename__ = "user_activity"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    chat_id = Column(Integer, ForeignKey('chats.id'))
+    datetime = Column(DateTime)
+
+    user = relationship("User", back_populates="activity")
+    chat = relationship("Chat", back_populates="activity")
+
+    def __init__(self, user, chat, datetime):
+        self.user = user
+        self.chat = chat
+        self.datetime = datetime
 
 
 class Voting(Base):

@@ -1,10 +1,7 @@
 # coding: utf-8
 
 from .helpers import admin_only
-
-from models import session
-from models.user_activity import UserActivity
-from models.user import User
+from models import session, User, UserActivity
 from settings import SQLITE_PATH
 
 

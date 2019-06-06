@@ -6,11 +6,6 @@ from sqlalchemy import pool
 from alembic import context
 
 from models import Base
-# Don't understand why this is necessary, but Alembic can't find the models without it:
-from models.chat import Chat # noqa
-from models.user import User # noqa
-from models.user_activity import UserActivity # noqa
-from models.voting import * # noqa
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

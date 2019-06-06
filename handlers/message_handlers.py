@@ -1,9 +1,6 @@
 # coding: utf-8
 
-from models import session
-from models.user_activity import UserActivity
-from models.user import User
-from models.chat import Chat
+from models import session, Chat, User, UserActivity
 
 
 def stats(bot, update):
