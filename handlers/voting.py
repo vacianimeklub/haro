@@ -18,7 +18,7 @@ from models import session
 from models.user import User
 from models.voting import (
     Voting,
-    VotingOptions,
+    VotingOption,
 )
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -160,7 +160,7 @@ def save_voting(from_user, voting_data):
 
     options = []
     for voting_option in voting_data['answers']:
-        option = VotingOptions(voting_option)
+        option = VotingOption(voting_option)
         option = session.merge(option)
         session.add(option)
         options.append(option)

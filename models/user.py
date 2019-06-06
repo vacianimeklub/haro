@@ -14,6 +14,7 @@ class User(Base):
 
     activity = relationship("UserActivity", back_populates="user")
     created_votings = relationship('Voting', back_populates='creator')
+    votes = relationship('Vote', back_populates='voter')
 
     def __init__(self, id, first_name, last_name, username):
         self.id = id
